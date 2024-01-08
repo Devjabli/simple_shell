@@ -1,4 +1,7 @@
 #include "shell.h"
+
+
+
 /**
  * _strdup - allocate a new copy str in memory
  * @str: pointer copy in memory
@@ -10,21 +13,30 @@
 char *_strdup(const char *str)
 {
 	char *p;
-	int i, len = 0;
+	int i = 0;
+	int length = 0;
 
 	if (str == NULL)
 		return (NULL);
 	while (*str != '\0')
 	{
-		len++;
+		length++;
 		str++;
 	}
-	str = str - len;
-	p = malloc(sizeof(char) * (len + 1));
+
+	str = str - length;
+
+
+	p = malloc(sizeof(char) * (length + 1));
 	if (p == NULL)
 		return (NULL);
-	for (i = 0; i <= len; i++)
+
+	while (i <= length)
+	{
 		p[i] = str[i];
+		i++;
+	}
+
 	return (p);
 }
 
@@ -39,9 +51,9 @@ char *_strdup(const char *str)
 
 int _strcmp(char *s1, char *s2)
 {
-	int cmp;
+	int comp;
 
-	cmp = (int)*s1 - (int)*s2;
+	comp = (int)*s1 - (int)*s2;
 
 	while (*s1)
 	{
@@ -49,9 +61,9 @@ int _strcmp(char *s1, char *s2)
 			break;
 		s1++;
 		s2++;
-		cmp = (int)*s1 - (int)*s2;
+		comp = (int)*s1 - (int)*s2;
 	}
-	return (cmp);
+	return (comp);
 }
 
 /**
@@ -63,11 +75,11 @@ int _strcmp(char *s1, char *s2)
 
 int _strlen(char *s)
 {
-	int len = 0;
+	int length = 0;
 
-	while (s[len])
-		len++;
-	return (len);
+	while (s[length])
+		length++;
+	return (length);
 }
 
 
@@ -81,15 +93,15 @@ int _strlen(char *s)
 
 char *_strcat(char *dest, char *src)
 {
-	char *p = dest;
+	char *ptr = dest;
 
 	while (*src)
 	{
-		*p = *src;
-		p++;
+		*ptr = *src;
+		ptr++;
 		src++;
 	}
-	*p = *src;
+	*ptr = *src;
 	return (dest);
 }
 

@@ -13,9 +13,7 @@ char *read_command(void)
 	ssize_t n;
 
 	if (isatty(STDIN_FILENO))
-	{
 		write(1, "$ ", 2);
-	}
 
 	n = getline(&buffer, &buffer_size, stdin);
 

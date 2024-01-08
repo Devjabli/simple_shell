@@ -16,7 +16,14 @@
 extern char **environ;
 
 
+int count_tokens(char *line);
+char **allocate_and_copy(char *line, int token_count);
+
+
 void freearrays(char **arr);
+
+
+char *check_freeing(char *str, char *cp, char *line);
 
 char *read_command(void);
 char **spliters(char *line);

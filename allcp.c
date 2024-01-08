@@ -1,3 +1,4 @@
+
 #include "shell.h"
 
 /**
@@ -13,16 +14,15 @@ char **allocate_and_copy(char *line, int token_count)
 	char *tp = NULL;
 	char **command = NULL;
 	int i = 0;
-	int sizeAddNull = 0;
 
-	token_count ? (sizeAddNull += token_count) : NULL;
 	if (!line || token_count <= 0)
 		return (NULL);
+
 	tp = _strdup(line);
 	if (!tp)
 		return (NULL);
 
-	command = malloc(sizeof(char *) * sizeAddNull);
+	command = malloc(sizeof(char *) * (token_count + 1));
 	if (!command)
 	{
 		free(tp);
@@ -36,7 +36,8 @@ char **allocate_and_copy(char *line, int token_count)
 		str = strtok(NULL, DELIM);
 		i++;
 	}
-	free(line), line = NULL;
+
+	free(tp);
 	command[i] = NULL;
 	return (command);
 }

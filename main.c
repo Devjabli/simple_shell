@@ -10,22 +10,26 @@
 
 int main(int ac, char **argv)
 {
-	char *line = NULL;
+	char *str = NULL;
 	char **cmd = NULL;
-	int status = 0;
+	int status = 0, in = 0;
 	(void)ac;
 
 	do {
-		line = read_command();
-		if (line == NULL)
+		str = read_command();
+		if (str == NULL)
 		{
-			if (isatty(STDIN_FILENO))
-				write(STDOUT_FILENO, "\n", 1);
+			isatty(STDIN_FILENO) ? write(STDOUT_FILENO, "\n", 1) : 0;
 			return (status);
 		}
-		cmd = spliters(line);
-		if (!cmd)
+
+		in++;
+		cmd = spliters(str);
+		if (cmd == NULL)
 			continue;
-		status = excute_cmd(cmd, argv);
+		if (check_builtin(cmd[0]))
+			ha_builtins(cmd, argv, status, in);
+		else
+			status = excute_cmd(cmd, argv, in);
 	} while (1);
 }

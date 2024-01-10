@@ -79,48 +79,6 @@ int _strlen(char *s)
 
 	while (s[length])
 		length++;
+
 	return (length);
-}
-
-
-/**
- * _strcat - it concatenates the distinate and source
- * @dest: pointer destination
- * @src: pointer source
- *
- * Return: return destination as a full string from dest and src
-*/
-
-char *_strcat(char *dest, char *src)
-{
-	char *ptr = dest;
-
-	while (*src)
-	{
-		*ptr = *src;
-		ptr++;
-		src++;
-	}
-	*ptr = *src;
-	return (dest);
-}
-
-/**
- * _strcpy - it copies the source to destination string
- * @dest: destination pointer string
- * @src: source pointer string
- *
- * Return: return the first destination as coped
-*/
-
-char *_strcpy(char *dest, char *src)
-{
-	int i = 0;
-
-	while (src[i])
-	{
-		dest[i] = src[i];
-		i++;
-	}
-	return (dest);
 }
